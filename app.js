@@ -22,7 +22,6 @@ app.get('/search', (req, res) => {
 })
 
 app.get('/restaurants/:id', (req, res) => {
-  console.log('req.params', req.params.id)
   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.id)
   res.render('show', { restaurant: restaurant })
 })
