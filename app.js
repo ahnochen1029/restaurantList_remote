@@ -16,8 +16,6 @@ db.once('open', () => {
 const exphds = require('express-handlebars')
 const restaurantList = require('./models/seeds/restaurant.json')
 
-
-
 app.engine('handlebars', exphds({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
