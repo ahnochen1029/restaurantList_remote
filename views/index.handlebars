@@ -22,24 +22,36 @@
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">
         {{#each restaurants}}
-        <a href="/restaurants/{{this.id}}" class="text-secondary">
-          <div class="card mb-3">
+        <div class="card mb-3">
+          <a href="/restaurants/{{this.id}}" class="text-secondary">
             <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
-            <div class="card-body p-3">
-              <h6 class="card-title mb-1">{{this.name}}</h6>
-
-              <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i> {{this.category}}
-              </div>
-
-              <span class="badge badge-pill badge-danger font-weight-normal">
+          </a>
+          <div class="card-body">
+            <h6 class="card-title mb-2 d-flex justify-content-center">{{this.name}}</h6>
+            <div class='d-flex justify-content-center'>
+              <h6 class="badge badge-pill badge-danger font-weight-normal">
                 {{this.rating}}
                 <i class="fas fa-star fa-xs"></i>
-              </span>
-
+              </h6>
+              <h6 class="badge badge-pill badge-warning ml-2">
+                <i class="fas fa-utensils pr-1">
+                  <span class="category pl-1">{{this.category}}</span>
+                </i>
+              </h6>
             </div>
           </div>
-        </a>
+          <div class='icons d-flex justify-content-center mt-2'>
+            <a href="/" class="text-secondary">
+              <i class="fas fa-info-circle"></i>
+            </a>
+            <a href="/" class="text-secondary">
+              <i class="fas fa-pencil-alt ml-4 mr-4"></i>
+            </a>
+            <a href="/" class="text-secondary">
+              <i class="fas fa-times-circle"></i>
+            </a>
+          </div>
+        </div>
         {{/each}}
       </div>
     </div>
