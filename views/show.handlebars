@@ -2,7 +2,6 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-10 mx-auto">
-
       <p class="mb-1">
         <span class="text-secondary">
           <i class="far fa-calendar pr-2"></i>
@@ -38,7 +37,10 @@
         style="max-width: 600px;">
     </div>
   </div>
-  <div class="col text-center pb-20">
+  <div class="row " style="justify-content: center;">
+    <form action="/restaurants/{{restaurant._id}}/edit" method="get" class=" mr-5">
+      <button type="submit" class="btn btn-warning" style="color:white">編輯資訊</button>
+    </form>
     <form action="/restaurants/{{restaurant._id}}/delete" method="POST">
       <button type="submit" class="btn btn-danger" style="color:white">刪除餐廳</button>
     </form>
