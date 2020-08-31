@@ -1,11 +1,17 @@
 const express = require('express')
-const app = express()
-const port = 3000
-
 const mongoose = require('mongoose')
+const exphds = require('express-handlebars')
+const app = express()
+const restaurantList = require('./models/seeds/restaurant.json')
+const port = 3000
+const bodyParser = require('body-parser')
+const Restaurant = require('./models/restaurant')
+const restaurant = require('./models/restaurant')
+
 mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
+
 db.on('error', () => {
   console.log('mongodb error')
 })
@@ -13,19 +19,19 @@ db.once('open', () => {
   console.log('mongodb connected')
 })
 
-const exphds = require('express-handlebars')
-const restaurantList = require('./models/seeds/restaurant.json')
-
 app.engine('handlebars', exphds({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
+  Restaurant.find()
+    .lean()
+    .then(restaurant => res.render('index', { restaurants: restaurantList.results }))
+    .catch(error => console.error(error))
+  // res.render('index', { restaurants: restaurantList.results })
 })
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  console.log(keyword)
   const restaurant = restaurantList.results.filter(restaurant => {
     return restaurant.name.toLowerCase().includes(keyword.toLocaleLowerCase())
   })
