@@ -4,9 +4,24 @@
 ## 功能表
 - 可以按照餐廳名稱進行搜尋
 - 可以檢視餐廳類別、地址、電話、評分、圖片
+- 可以修改餐廳類別、地址、電話、評分、圖片
+- 可以新增餐廳類別、地址、電話、評分、圖片
+- 可以刪除餐廳資訊
 
 ### 搜尋功能
 輸入關鍵字，找尋合適餐廳
+
+### 檢視功能
+點選圖片或是<i class="fas fa-info-circle"></i>可以檢視餐廳資訊
+
+### 修改功能
+點選<i class="fas fa-pencil-alt"></i>可以修改餐廳資訊
+
+### 刪除功能
+點選<i class="fas fa-times-circle"></i>可以餐廳資訊
+
+### 新增功能
+右上角可以點選新增餐廳資訊
 
 ## 安裝方式
 1. 開啟終端機(Terminal)cd 到存放專案本機位置並執行:
@@ -25,17 +40,27 @@
  $ npm install express
 ```
 
-4. 安裝npm express套件
+4. 安裝npm express-handlebars套件
 ```
  $ npm i express-handlebars
 ```
 
-5. 啟動伺服器，執行app.js
+5. 安裝npm body-parser套件
 ```
- $ nodemon app.js
+ $ npm i body-parser
 ```
 
-6. 關閉伺服器
+6. 安裝npm mongoose套件
+```
+ $ npm i mongoose
+```
+
+7. 啟動伺服器
+```
+ $ npm run dev
+```
+
+8. 關閉伺服器
 ```
  連續兩下CTRL+C 離開批次工作
 ```
@@ -43,3 +68,5 @@
 ## 環境版本
 1. [Express](https://expressjs.com/en/starter/installing.html) 4.17.1
 2. [Express-Handlebars](https://www.npmjs.com/package/express-handlebars) 5.1.0
+3. [Mongoose] 5.10.2
+4. [Body-parser] 1.19.0
