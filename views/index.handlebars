@@ -47,9 +47,10 @@
             <a href="/restaurants/{{this._id}}/edit" class="text-secondary">
               <i class="fas fa-pencil-alt ml-4 mr-4"></i>
             </a>
-            <a href="/" class="text-secondary">
-              <i class="fas fa-times-circle"></i>
-            </a>
+            <form action="/restaurants/{{ this._id }}/delete" method="POST" style="display:inline">
+              <button type="submit" style="border: none; background:transparent;" class="fas fa-times-circle">
+              </button>
+            </form>
           </div>
         </div>
         {{/each}}

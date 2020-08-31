@@ -6,8 +6,6 @@ const restaurantList = require('./models/seeds/restaurant.json')
 const port = 3000
 const bodyParser = require('body-parser')
 const Restaurant = require('./models/restaurant')
-const restaurant = require('./models/restaurant')
-
 
 mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -19,6 +17,7 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected')
 })
+
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.engine('handlebars', exphds({ defaultLayout: 'main' }))
@@ -32,13 +31,14 @@ app.get('/', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
+  const keyword = req.query.keyword.toLocaleLowerCase()
   const restaurant = restaurantList.results.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(keyword.toLocaleLowerCase())
+    return restaurant.name.toLowerCase().includes(keyword)
   })
-  res.render('index', { restaurants: restaurant, keyword: keyword })
+  res.render('index', { restaurant, keyword })
 })
 
+//show restaurant info
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -47,6 +47,7 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//create new restaurant
 app.get('/new', (req, res) => {
   return res.render('new')
 })
@@ -66,6 +67,7 @@ app.post('/restaurants', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//edit restaurant info
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -102,6 +104,14 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//delete selected restaurant
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 //setting static files
 app.use(express.static('public'))
