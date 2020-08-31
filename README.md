@@ -12,13 +12,13 @@
 輸入關鍵字，找尋合適餐廳
 
 ### 檢視功能
-點選圖片或是<i class="fas fa-info-circle"></i>可以檢視餐廳資訊
+點選圖片或是icon可以檢視餐廳資訊
 
 ### 修改功能
-點選<i class="fas fa-pencil-alt"></i>可以修改餐廳資訊
+點選icon可以修改餐廳資訊
 
 ### 刪除功能
-點選<i class="fas fa-times-circle"></i>可以餐廳資訊
+點選icon可以餐廳資訊
 
 ### 新增功能
 右上角可以點選新增餐廳資訊
