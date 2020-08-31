@@ -6,7 +6,7 @@ const restaurantList = require('./models/seeds/restaurant.json')
 const port = 3000
 const bodyParser = require('body-parser')
 const Restaurant = require('./models/restaurant')
-const restaurant = require('./models/restaurant')
+
 
 mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -18,6 +18,7 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected')
 })
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.engine('handlebars', exphds({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -25,9 +26,8 @@ app.set('view engine', 'handlebars')
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
-    .then(restaurant => res.render('index', { restaurants: restaurantList.results }))
+    .then(restaurant => res.render('index', { restaurant }))
     .catch(error => console.error(error))
-  // res.render('index', { restaurants: restaurantList.results })
 })
 
 app.get('/search', (req, res) => {
@@ -41,6 +41,26 @@ app.get('/search', (req, res) => {
 app.get('/restaurants/:id', (req, res) => {
   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.id)
   res.render('show', { restaurant: restaurant })
+})
+
+app.get('/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  const name = req.body.name
+  const name_en = req.body.name_en
+  const id = req.body.id
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const google_map = req.body.google_map
+  const rating = req.body.rating
+  const description = req.body.description
+  return Restaurant.create({ name, name_en, id, category, image, location, phone, google_map, rating, description })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 //setting static files

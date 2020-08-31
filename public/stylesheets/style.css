@@ -2,11 +2,23 @@ header {
   overflow: hidden;
 }
 
+.container{
+  justify-content: space-between;
+}
+
 .navbar .navbar-brand {
   color: #4592af;
 }
 
+#addNew{
+  color: #4592af;
+}
+
 .navbar .navbar-brand:hover {
+  color: #226089;
+}
+
+#addNew :hover {
   color: #226089;
 }
 
@@ -94,3 +106,5 @@ header {
 .fa-utensils{
   color: white;
 }
+
+
