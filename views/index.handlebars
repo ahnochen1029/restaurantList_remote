@@ -23,7 +23,7 @@
       <div class="card-columns">
         {{#each restaurant}}
         <div class="card mb-3">
-          <a href="/restaurants/{{this.id}}" class="text-secondary">
+          <a href="/restaurants/{{this._id}}" class="text-secondary">
             <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
           </a>
           <div class="card-body">
@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class='icons d-flex justify-content-center mt-2'>
-            <a href="/" class="text-secondary">
+            <a href="/restaurants/{{this._id}}" class="text-secondary">
               <i class="fas fa-info-circle"></i>
             </a>
             <a href="/" class="text-secondary">

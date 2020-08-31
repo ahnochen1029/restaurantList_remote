@@ -6,6 +6,7 @@ const restaurantList = require('./models/seeds/restaurant.json')
 const port = 3000
 const bodyParser = require('body-parser')
 const Restaurant = require('./models/restaurant')
+const restaurant = require('./models/restaurant')
 
 
 mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -39,8 +40,14 @@ app.get('/search', (req, res) => {
 })
 
 app.get('/restaurants/:id', (req, res) => {
-  const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.id)
-  res.render('show', { restaurant: restaurant })
+  const id = req.params.id
+  console.log(id)
+  return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('show', { restaurant }))
+    .catch(error => console.log(error))
+  // const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.id)
+  // res.render('show', { restaurant: restaurant })
 })
 
 app.get('/new', (req, res) => {
@@ -50,7 +57,6 @@ app.get('/new', (req, res) => {
 app.post('/restaurants', (req, res) => {
   const name = req.body.name
   const name_en = req.body.name_en
-  const id = req.body.id
   const category = req.body.category
   const image = req.body.image
   const location = req.body.location
@@ -58,7 +64,7 @@ app.post('/restaurants', (req, res) => {
   const google_map = req.body.google_map
   const rating = req.body.rating
   const description = req.body.description
-  return Restaurant.create({ name, name_en, id, category, image, location, phone, google_map, rating, description })
+  return Restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
