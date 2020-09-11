@@ -30,13 +30,13 @@ app.set('view engine', 'handlebars')
 app.use(methodOverride('_method'))
 app.use(routes)
 
-app.get('/search', (req, res) => {
-  const keyword = req.query.keyword.toLocaleLowerCase()
-  const restaurant = restaurantList.results.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(keyword)
-  })
-  res.render('index', { restaurant, keyword })
-})
+// app.get('/search', (req, res) => {
+//   const keyword = req.query.keyword.toLocaleLowerCase()
+//   const restaurant = restaurantList.results.filter(restaurant => {
+//     return restaurant.name.toLowerCase().includes(keyword)
+//   })
+//   res.render('index', { restaurant, keyword })
+// })
 
 // app.get('/restaurant/new', (req, res) => {
 //   return res.render('new')
