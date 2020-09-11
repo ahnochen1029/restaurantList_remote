@@ -4,6 +4,7 @@ const Restaurant = require('../../models/restaurant')
 
 //show restaurant info
 router.get('/:id', (req, res) => {
+  console.log(req.query)
   const id = req.params.id
   return Restaurant.findById(id)
     .lean()
