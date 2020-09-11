@@ -23,6 +23,9 @@
 ### 新增功能
 右上角可以點選新增餐廳資訊
 
+### 排序功能
+可以點選單選擇排序方式
+
 ## 安裝方式
 1. 開啟終端機(Terminal)cd 到存放專案本機位置並執行:
 ```
@@ -55,12 +58,17 @@
  $ npm i mongoose
 ```
 
-7. 啟動伺服器
+7. 安裝npm method-override
+```
+ $ npm i method-override
+```
+
+8. 啟動伺服器
 ```
  $ npm run dev
 ```
 
-8. 關閉伺服器
+9. 關閉伺服器
 ```
  連續兩下CTRL+C 離開批次工作
 ```
@@ -70,3 +78,4 @@
 2. [Express-Handlebars](https://www.npmjs.com/package/express-handlebars) 5.1.0
 3. [Mongoose] 5.10.2
 4. [Body-parser] 1.19.0
+5. [method-override] 3.0.0
