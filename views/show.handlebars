@@ -41,7 +41,7 @@
     <form action="/restaurants/{{restaurant._id}}/edit" method="get" class=" mr-5">
       <button type="submit" class="btn btn-warning" style="color:white">編輯資訊</button>
     </form>
-    <form action="/restaurants/{{restaurant._id}}/delete" method="POST">
+    <form action="/restaurants/{{restaurant._id}}?_method=DELETE" method="POST">
       <button type="submit" class="btn btn-danger" style="color:white">刪除餐廳</button>
     </form>
   </div>
