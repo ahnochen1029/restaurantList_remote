@@ -1,23 +1,14 @@
 const express = require('express')
-const mongoose = require('mongoose')
+
 const exphds = require('express-handlebars')
 const methodOverride = require('method-override')
 
 const port = 3000
 const bodyParser = require('body-parser')
 const routes = require('./routes')
+require('./config/mongoose')
 
 const app = express()
-mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true, useUnifiedTopology: true })
-
-const db = mongoose.connection
-
-db.on('error', () => {
-  console.log('mongodb error')
-})
-db.once('open', () => {
-  console.log('mongodb connected')
-})
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
