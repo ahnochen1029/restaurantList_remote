@@ -1,7 +1,7 @@
 <div class="container mx-auto my-5" style="color:white; background:#00758F; border-radius:8px; width: 540px">
   <h2 class="text-center pt-3">編輯餐廳</h2>
   <div class="p-3 mt-3">
-    <form action="/restaurants/{{restaurant._id}}/edit" method="POST" class="font-weight-light">
+    <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST" class="font-weight-light">
       <!-- 餐廳中文名稱  -->
       <div class="form-group row">
         <div class="col-sm-12">
