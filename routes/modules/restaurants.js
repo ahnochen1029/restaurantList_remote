@@ -2,15 +2,6 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
-//show restaurant info
-router.get('/:id', (req, res) => {
-  console.log(req.query)
-  const id = req.params.id
-  return Restaurant.findById(id)
-    .lean()
-    .then((restaurant) => res.render('show', { restaurant }))
-    .catch(error => console.log(error))
-})
 
 //create new restaurant
 router.get('/new', (req, res) => {
@@ -29,6 +20,16 @@ router.post('/', (req, res) => {
   const description = req.body.description
   return Restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description })
     .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+//show restaurant info
+router.get('/:id', (req, res) => {
+  console.log(req.query)
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('show', { restaurant }))
     .catch(error => console.log(error))
 })
 

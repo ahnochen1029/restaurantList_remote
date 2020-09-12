@@ -1,6 +1,8 @@
 const restaurantData = require('./restaurant.json')
 const Restaurant = require('../restaurant')
 
+const db = mongoose.connection
+
 db.once('open', () => {
   console.log('mongodb connected!')
   restaurantData.results.forEach(data => {
