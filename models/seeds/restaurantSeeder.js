@@ -1,7 +1,7 @@
 const restaurantData = require('./restaurant.json')
 const Restaurant = require('../restaurant')
 
-const db = mongoose.connection
+const db = require('../../config/mongoose')
 
 db.once('open', () => {
   console.log('mongodb connected!')
@@ -18,4 +18,5 @@ db.once('open', () => {
       "description": data.description,
     })
   })
+  console.log('done')
 })
