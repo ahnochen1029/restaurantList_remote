@@ -4,8 +4,6 @@ const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
 router.get('/', (req, res) => {
-  const sortBy = req.query.by
-  console.log('sortBy', sortBy)
   const sort = req.query.sort
   console.log('sort', sort)
   let method = {}
