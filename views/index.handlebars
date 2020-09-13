@@ -23,10 +23,10 @@
       <select name="sort" class="form-control " id='inputType' onchange="this.form.submit()"
         style=" text-align: center; text-align-last: center">
         <option value="id" disabled selected>排序</option>
-        <option value="name-asc">A -> Z</option>
-        <option value="name-desc">Z -> A</option>
-        <option value="location-asc">地區</option>
-        <option value="rating-desc">評比</option>
+        <option value="name-asc" {{#is sort "name-asc"}} selected {{/is}}>A -> Z</option>
+        <option value="name-desc" {{#is sort "name-desc"}} selected {{/is}}>Z -> A</option>
+        <option value="location-asc" {{#is sort "location-asc"}} selected {{/is}}>地區</option>
+        <option value="rating-desc" {{#is sort "rating-desc"}} selected {{/is}}>評比</option>
       </select>
       <noscript><input type="submit"></noscript>
     </div>

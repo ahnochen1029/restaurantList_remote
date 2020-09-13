@@ -1,19 +1,18 @@
 const express = require('express')
 const exphds = require('express-handlebars')
 const methodOverride = require('method-override')
-
-const port = 3000
 const bodyParser = require('body-parser')
+const hbshelpers = require('handlebars-helpers')
 const routes = require('./routes')
 require('./config/mongoose')
 
 const app = express()
+const port = 3000
 
-app.use(bodyParser.urlencoded({ extended: true }))
-
-app.engine('handlebars', exphds({ defaultLayout: 'main' }))
+app.engine('handlebars', exphds({ defaultLayout: 'main', helpers: hbshelpers() }))
 app.set('view engine', 'handlebars')
 
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(routes)
 
