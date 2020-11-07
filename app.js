@@ -9,12 +9,17 @@ const session = require('express-session')
 const usePassport = require('./config/passport')
 require('./config/mongoose')
 
-
 const app = express()
 const port = 3000
 
 app.engine('handlebars', exphds({ defaultLayout: 'main', helpers: hbshelpers() }))
 app.set('view engine', 'handlebars')
+
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
@@ -22,12 +27,6 @@ app.use(methodOverride('_method'))
 usePassport(app)
 
 app.use(routes)
-
-app.use(session({
-  secret: 'ThisIsMySecret',
-  resave: false,
-  saveUninitialized: true
-}))
 
 //setting static files
 app.use(express.static('public'))

@@ -46,6 +46,8 @@ module.exports = app => {
   passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
     User.findOne({ email })
       .then(user => {
+        console.log(user.email)
+        console.log(user.password)
         if (!user) {
           return done(null, false, { message: 'That email is not registered!' })
         }
@@ -57,13 +59,27 @@ module.exports = app => {
       .catch(err => done(err, false))
   }))
   // 設定序列化與反序列化
+  // passport.serializeUser((user, done) => {
+  //   done(null, user.id)
+  // })
+  // passport.deserializeUser((id, done) => {
+  //   User.findById(id)
+  //     .lean()
+  //     .then(user => done(null, user))
+  //     .catch(err => done(err, null))
+  // })
+
+  // serialize & deserialize
   passport.serializeUser((user, done) => {
-    done(null, user.id)
+    done(null, user._id)
   })
-  passport.deserializeUser((id, done) => {
-    User.findById(id)
+  passport.deserializeUser((_id, done) => {
+    User.findById(_id)
       .lean()
       .then(user => done(null, user))
       .catch(err => done(err, null))
   })
 }
+
+
+

@@ -16,4 +16,5 @@ router.use('/sort', sort)
 router.use('/users', users)
 router.use('/', authenticator, home)
 
+
 module.exports = router
