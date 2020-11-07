@@ -5,8 +5,10 @@ const bodyParser = require('body-parser')
 const hbshelpers = require('handlebars-helpers')
 const routes = require('./routes')
 const session = require('express-session')
+
 const usePassport = require('./config/passport')
 require('./config/mongoose')
+
 
 const app = express()
 const port = 3000
