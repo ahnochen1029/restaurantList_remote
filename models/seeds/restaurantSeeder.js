@@ -23,12 +23,6 @@ const SEED_USER = [
   },
 ]
 
-// const SEED_USER = {
-//   name: 'user1',
-//   email: 'user1@example.com',
-//   password: '12345678'
-// }
-
 db.once('open', () => {
   const userlist = restaurantData.results.splice(0, 6)
   bcrypt
