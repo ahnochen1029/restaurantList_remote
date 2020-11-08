@@ -8,11 +8,15 @@ const routes = require('./routes')
 const session = require('express-session')
 const flash = require('connect-flash')
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 const app = express()
-const port = 3000
+const PORT = process.env.PORT
 
 app.engine('handlebars', exphbs({ helpers: comparison, defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -40,6 +44,6 @@ app.use(routes)
 //setting static files
 app.use(express.static('public'))
 
-app.listen(port, () => {
-  console.log(`The website is http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`The website is http://localhost:${PORT}`)
 })
