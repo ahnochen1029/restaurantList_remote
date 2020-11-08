@@ -2,42 +2,6 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const User = require('../models/user')
 
-// module.exports = app => {
-//   app.use(passport.initialize())
-//   app.use(passport.session())
-
-//   //strategies設定本地登入策略
-//   passport.use(new LocalStrategy({ usernameField: 'email' },
-//     (email, password, done) => {
-//       User.findOne({ email })
-//         .then(user => {
-//           if (!user) {
-//             return done(null, false, { message: 'That email is not registered!' })
-//           }
-//           if (user.password !== password) {
-//             return done(null, false, { message: 'Email or Password incorrect.' })
-//           }
-//           return done(null, user)
-//         })
-//         .catch(err => console.log(err))
-//     }
-//   ))
-
-//   //session
-//   passport.serializeUser((user, done) => {
-//     done(null, user.id);
-//   });
-
-//   passport.deserializeUser((id, done) => {
-//     User.findById(id)
-//       .lean()
-//       .then(user => done(null, user))
-//       .catch(user => done(err, null))
-//   })
-
-// }
-
-
 module.exports = app => {
   // 初始化 Passport 模組
   app.use(passport.initialize())
@@ -46,8 +10,6 @@ module.exports = app => {
   passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
     User.findOne({ email })
       .then(user => {
-        console.log(user.email)
-        console.log(user.password)
         if (!user) {
           return done(null, false, { message: 'That email is not registered!' })
         }
@@ -59,22 +21,11 @@ module.exports = app => {
       .catch(err => done(err, false))
   }))
   // 設定序列化與反序列化
-  // passport.serializeUser((user, done) => {
-  //   done(null, user.id)
-  // })
-  // passport.deserializeUser((id, done) => {
-  //   User.findById(id)
-  //     .lean()
-  //     .then(user => done(null, user))
-  //     .catch(err => done(err, null))
-  // })
-
-  // serialize & deserialize
   passport.serializeUser((user, done) => {
-    done(null, user._id)
+    done(null, user.id)
   })
-  passport.deserializeUser((_id, done) => {
-    User.findById(_id)
+  passport.deserializeUser((id, done) => {
+    User.findById(id)
       .lean()
       .then(user => done(null, user))
       .catch(err => done(err, null))

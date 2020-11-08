@@ -20,6 +20,11 @@
 <div class="container mt-5">
   <form action="/sort" method="GET" class="row pb-4 d-flex justify-content-end">
     <div class='col-4'>
+      <a href="/restaurants/new" class="btn btn-outline-light">
+        <i class="fas fa-plus" id="addNew">
+          <span>新增餐廳</span>
+        </i>
+      </a>
       <select name="sort" class="form-control " id='inputType' onchange="this.form.submit()"
         style=" text-align: center; text-align-last: center">
         <option value="id" disabled selected>排序</option>
