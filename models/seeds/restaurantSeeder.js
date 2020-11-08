@@ -44,16 +44,6 @@ db.once('open', () => {
         }
       }))
     })
-    // .then(user => {
-    //   return Promise.all(userlist2.map((restaurant, index) => {
-    //     if (index < 3) {
-    //       console.log('user2done')
-    //       restaurant.userId = user[1]._id
-    //       console.log('user[1]._id', user[1]._id)
-    //       return Restaurant.create(Object.assign({}, restaurant))
-    //     }
-    //   }))
-    // })
     .then(() => {
       console.log('done.')
       process.exit()
